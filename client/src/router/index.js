@@ -1,8 +1,10 @@
+// Routing from browser address
+
 import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
-import Bottles from '@/components/Bottles'
-import NewPost from '@/components/NewItem'
+import Cellar from '@/components/Cellar'
+import NewItem from '@/components/NewItem'
 import EditItem from '@/components/EditItem'
 
 Vue.use(Router)
@@ -17,8 +19,8 @@ export default new Router({
     },
     {
       path: '/posts',
-      name: 'Bottles',
-      component: Bottles
+      name: 'Cellar',
+      component: Cellar
     },
     {
       path: '/posts/new',

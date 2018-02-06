@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     async addPost () {
-      await PostsService.addPost({
+      await CellarService.addPost({
         title: this.title,
         description: this.description
       })
