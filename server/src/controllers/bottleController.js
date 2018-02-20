@@ -1,8 +1,41 @@
-const express = require("express");
-var router = express.Router();
+var Bottle = require('../models/bottle');
+require('../models/wine');
+require('../models/appellation');
+require('../models/region');
+require('../models/producer');
 
-var Bottle = require("../models/bottle");
 
+// Display list of all Bottles.
+exports.bottle_list = function(req, res) {
+    // res.send('NOT IMPLEMENTED: Bottle list');
+    Bottle.find({}, "wine _id", function(error, bottles) {
+      if (error) {
+        console.error(error);
+      }
+      else {
+        console.log(bottles);
+      }
+      res.send({
+        bottles: bottles
+      })
+    })
+    .sort({ _id: -1 })
+    .populate({
+      path: 'wine',
+      populate: {
+        path: 'appellation',
+        populate: {path: 'region'}
+      }
+    })
+
+};
+
+// Display detail page for a specific Bottle.
+exports.bottle_detail = function(req, res) {
+    res.send('NOT IMPLEMENTED: Bottle detail: ' + req.params.id);
+};
+
+/*
 // Add new post
 router.post("/bottle", (req, res) => {
     var db = req.db;
@@ -88,5 +121,4 @@ router.delete("/bottle/:id", (req, res) => {
         }
     );
 });
-
-module.exports = router;
+*/

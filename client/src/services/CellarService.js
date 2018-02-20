@@ -1,11 +1,12 @@
 // Internal routing to server
 
-import Api from '@/services/Api';
+import Api from '@/services/Api'
 
 export default {
-  fetchPosts() {
-    return Api().get('cellar');
-  },
+  fetchBottles () {
+    return Api().get('cellar')
+  }
+  /*,
 
   addPost(params) {
     return Api().post('cellar', params);
@@ -22,4 +23,5 @@ export default {
   deletePost(id) {
     return Api().delete('cellar/bottle/' + id);
   }
-};
+  */
+}

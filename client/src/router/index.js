@@ -2,26 +2,29 @@
 
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
+// import Hello from '@/components/Hello'
 import Cellar from '@/components/Cellar'
-import NewItem from '@/components/NewItem'
-import EditItem from '@/components/EditItem'
+// import NewItem from '@/components/NewItem'
+// import EditItem from '@/components/EditItem'
 
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  /* mode: 'history', */
   routes: [
+    /*
     {
       path: '/',
       name: 'Hello',
       component: Hello
     },
+    */
     {
-      path: '/posts',
+      path: '/cellar',
       name: 'Cellar',
       component: Cellar
-    },
+    }
+    /*,
     {
       path: '/posts/new',
       name: 'NewItem',
@@ -32,5 +35,6 @@ export default new Router({
       name: 'EditItem',
       component: EditItem
     }
+    */
   ]
 })

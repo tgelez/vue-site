@@ -1,54 +1,46 @@
 <template>
-  <div class="posts">
-    <h1>Posts</h1>
-    <div v-if="posts.length > 0" class="table-wrap">
-      <div>
-        <router-link v-bind:to="{ name: 'NewPost' }" class="">Add Post</router-link>
-      </div>
+  <div class="bottles">
+    <h1>Bottles</h1>
       <table>
         <tr>
-          <td>Title</td>
-          <td width="550">Description</td>
-          <td width="100" align="center">Action</td>
+          <td>Producer</td>
+          <td>Appellation</td>
+          <td>Designation</td>
+          <td>ID</td>
         </tr>
-        <tr v-for="post in posts" :key="post.id">
-          <td>{{ post.title }}</td>
-          <td>{{ post.description }}</td>
-          <td align="center">
-            <router-link v-bind:to="{ name: 'EditPost', params: { id: post._id } }">Edit</router-link> |
-            <a href="#" @click="deletePost(post._id)">Delete</a>
-          </td>
+        <tr v-for="bottle in bottles" :key="bottle._id">
+          <td>{{ bottle.wine.producer.name }}</td>
+          <td>{{ bottle.wine.appellation.name }}</td>
+          <td>{{ bottle.wine.designation }}</td>
+          <td>{{ bottle._id }}</td>
         </tr>
       </table>
     </div>
-    <div v-else>
-      There are no posts.. Lets add one now <br /><br />
-      <router-link v-bind:to="{ name: 'NewPost' }" class="add_post_link">Add Post</router-link>
-    </div>
-  </div>
 </template>
 
 <script>
 import CellarService from '@/services/CellarService'
 export default {
-  name: 'posts',
+  name: 'bottles',
   data () {
     return {
-      posts: []
+      bottles: []
     }
   },
   mounted () {
-    this.getPosts()
+    this.getBottles()
   },
   methods: {
-    async getPosts () {
-      const response = await CellarService.fetchPosts()
-      this.posts = response.data.posts
-    },
+    async getBottles () {
+      const response = await CellarService.fetchBottles()
+      this.bottles = response.data.bottles
+    }
+    /*,
     async deletePost (id) {
       await CellarService.deletePost(id)
       this.$router.push({ name: 'Posts' })
     }
+    */
   }
 }
 </script>

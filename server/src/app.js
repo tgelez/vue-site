@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // MongoDB interface
-mongoose.connect("mongodb://localhost:27017/posts");
+mongoose.connect("mongodb://localhost:27017/cellar");
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error"));
@@ -19,6 +19,9 @@ db.once("open", function(callback) {
 });
 
 // Routing
+var index = require("./routes/index");
+app.use("/", index);
+
 var cellar = require("./routes/cellar");
 app.use("/cellar", cellar);
 
